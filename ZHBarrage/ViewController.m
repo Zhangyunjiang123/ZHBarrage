@@ -20,10 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _zh = [[ZHBarrage alloc]initWithFrame:CGRectMake(0, 50, [[UIScreen mainScreen] bounds].size.width, 300)];
+    _zh = [[ZHBarrage alloc]initWithFrame:CGRectMake(0, 50, [[UIScreen mainScreen] bounds].size.width, 15*25)];
     [self.view addSubview:_zh];
     
-    [NSTimer scheduledTimerWithTimeInterval:3
+    [NSTimer scheduledTimerWithTimeInterval:10
                                      target:self
                                    selector:@selector(sendBarrage)
                                    userInfo:nil
@@ -38,6 +38,26 @@
     [attributed setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:17]} range:NSMakeRange(5, msg.length - 5)];
     NSMutableAttributedString *attributed_string = [[NSMutableAttributedString alloc] init];
     [attributed_string appendAttributedString:attributed];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
+    [_zh sendMessage:attributed_string withSpeed:100];
     [_zh sendMessage:attributed_string withSpeed:100];
 }
 @end

@@ -8,11 +8,13 @@
 
 #import "ZHBarrage.h"
 #import "ZHLabel.h"
+#import "ZHModel.h"
 
 #define ZH_WIDTH self.frame.size.width
 #define ZH_HEIGHT self.frame.size.height
 #define ZH_Label_HEIGHT 20
 #define ZH_Label_tag    10000
+
 @interface ZHBarrage()
 {
     UILabel   *label;
@@ -47,6 +49,15 @@
 
 - (void)sendMessage:(NSMutableAttributedString *)attributedString withSpeed:(int)speed
 {
+    if (_cacheInfoArr && _cacheInfoArr.count > 0) {
+        //别急，先处理当前缓存信息
+        ZHModel *model = [[ZHModel alloc]init];
+        model.attributedString = attributedString;
+        model.speed = speed;
+        [_cacheInfoArr addObject:model];
+        return;
+    }
+    //是否查找到通道
     for (int i = 0; i < _countChannel; i++) {
         ZHLabel *label = [self viewWithTag:ZH_Label_tag + i];
         NSLog(@"curr channel %d unblocked = %d",i,label.unblocked);
@@ -54,6 +65,54 @@
             [label updateAttributed:attributedString withSpeed:speed];
             return;
         }
+    }
+    //处理未找到通道时动作
+    NSLog(@"creat succeed");
+    if (!_cacheInfoArr) {
+        _cacheInfoArr = [[NSMutableArray alloc] init];
+    }
+    ZHModel *model = [[ZHModel alloc] init];
+    model.attributedString = attributedString;
+    model.speed = speed;
+    [_cacheInfoArr addObject:model];
+    if (!_cacheTime) {
+        _cacheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
+                                                      target:self
+                                                    selector:@selector(cacheTimeFunction)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    }
+}
+
+- (void)cacheTimeFunction
+{
+    ZHModel *model = [_cacheInfoArr firstObject];
+    for (int i = 0; i < _countChannel; i++) {
+        ZHLabel *label = [self viewWithTag:ZH_Label_tag + i];
+        if (label.unblocked == YES) {
+            [label updateAttributed:model.attributedString withSpeed:model.speed];
+            [_cacheInfoArr removeObjectAtIndex:0];
+            if (_cacheInfoArr.count == 0) {
+                //清空集合，停止时间循环
+                _cacheInfoArr = nil;
+                [self stopCacheTime];
+                NSLog(@"clean succeed");
+            }
+            return;
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [self stopCacheTime];
+}
+
+- (void)stopCacheTime
+{
+    if (_cacheTime) {
+        [_cacheTime invalidate];
+        _cacheTime = nil;
     }
 }
 
