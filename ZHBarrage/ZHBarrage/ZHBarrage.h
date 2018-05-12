@@ -19,7 +19,11 @@
 
  @param attributedString 内容
  @param speed 速度
+ @param imagePath 背景图片地址
+ @param insets 偏移量
  */
-- (void)sendMessage:(NSMutableAttributedString *)attributedString withSpeed:(int)speed;
-
+- (void)sendMessage:(NSMutableAttributedString *)attributedString
+          withSpeed:(int)speed
+          withImage:(NSString *)imagePath
+         withInsets:(UIEdgeInsets)insets;
 @end

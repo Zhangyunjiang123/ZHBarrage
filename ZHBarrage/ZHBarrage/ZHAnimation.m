@@ -10,11 +10,16 @@
 
 #import "ZHAnimation.h"
 
+static ZHAnimation *animation;
+
 @implementation ZHAnimation
 
 + (instancetype)shareTool
 {
-    return [[self alloc]init];
+    @synchronized (animation) {
+        animation = [[ZHAnimation alloc] init];
+    }
+    return animation;
 }
 
 - (instancetype)init

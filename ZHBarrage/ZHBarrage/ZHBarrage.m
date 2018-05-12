@@ -12,7 +12,7 @@
 
 #define ZH_WIDTH self.frame.size.width
 #define ZH_HEIGHT self.frame.size.height
-#define ZH_Label_HEIGHT 20
+#define ZH_Label_HEIGHT 30
 #define ZH_Label_tag    10000
 
 @interface ZHBarrage()
@@ -47,13 +47,18 @@
     }
 }
 
-- (void)sendMessage:(NSMutableAttributedString *)attributedString withSpeed:(int)speed
+- (void)sendMessage:(NSMutableAttributedString *)attributedString
+          withSpeed:(int)speed
+          withImage:(NSString *)imagePath
+         withInsets:(UIEdgeInsets)insets
 {
     if (_cacheInfoArr && _cacheInfoArr.count > 0) {
         //别急，先处理当前缓存信息
         ZHModel *model = [[ZHModel alloc]init];
         model.attributedString = attributedString;
         model.speed = speed;
+        model.imagePath = imagePath;
+        model.textInsets = insets;
         [_cacheInfoArr addObject:model];
         return;
     }
@@ -62,7 +67,10 @@
         ZHLabel *label = [self viewWithTag:ZH_Label_tag + i];
         NSLog(@"curr channel %d unblocked = %d",i,label.unblocked);
         if (label.unblocked == YES) {
-            [label updateAttributed:attributedString withSpeed:speed];
+            [label updateAttributed:attributedString
+                          withSpeed:speed
+                          withImage:imagePath
+                         withInsets:insets];
             return;
         }
     }
@@ -90,7 +98,10 @@
     for (int i = 0; i < _countChannel; i++) {
         ZHLabel *label = [self viewWithTag:ZH_Label_tag + i];
         if (label.unblocked == YES) {
-            [label updateAttributed:model.attributedString withSpeed:model.speed];
+            [label updateAttributed:model.attributedString
+                          withSpeed:model.speed
+                          withImage:model.imagePath
+                         withInsets:model.textInsets];
             [_cacheInfoArr removeObjectAtIndex:0];
             if (_cacheInfoArr.count == 0) {
                 //清空集合，停止时间循环

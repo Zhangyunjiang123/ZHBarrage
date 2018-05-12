@@ -6,9 +6,14 @@
 //  Copyright © 2018年 张云江. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface ZHModel : NSObject
+
 @property(nonatomic,strong)NSMutableAttributedString *attributedString;
-@property(nonatomic,assign)int speed;
+@property(nonatomic,copy)NSString  *imagePath;
+@property(nonatomic,assign)int     speed;
+@property(nonatomic,assign)UIEdgeInsets textInsets;
+
 @end

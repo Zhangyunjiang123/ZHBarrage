@@ -14,14 +14,19 @@
  通道是否畅通 YES 通畅
  */
 @property(nonatomic,assign)BOOL unblocked;
-
-
+/**
+ 设置字偏移量
+ */
+@property(nonatomic,assign)UIEdgeInsets textInsets;
 /**
  赋值
 
  @param attributedString 值
  @param speed 速度
  */
-- (void)updateAttributed:(NSMutableAttributedString *)attributedString withSpeed:(int)speed;
+- (void)updateAttributed:(NSMutableAttributedString *)attributedString
+               withSpeed:(int)speed
+               withImage:(NSString *)imagePath
+              withInsets:(UIEdgeInsets)insets;;
 
 @end

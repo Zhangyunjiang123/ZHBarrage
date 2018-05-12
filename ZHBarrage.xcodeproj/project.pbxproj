@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC24112C20A68DA600F1656D /* ZHbackgroundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AC24112B20A68DA600F1656D /* ZHbackgroundImage.m */; };
 		ACA85FFC2018687500802715 /* ZHModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA85FFB2018687500802715 /* ZHModel.m */; };
 		ACB844362017372E00FE2957 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB844352017372E00FE2957 /* AppDelegate.m */; };
 		ACB844392017372E00FE2957 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB844382017372E00FE2957 /* ViewController.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC24112A20A68DA600F1656D /* ZHbackgroundImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHbackgroundImage.h; sourceTree = "<group>"; };
+		AC24112B20A68DA600F1656D /* ZHbackgroundImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHbackgroundImage.m; sourceTree = "<group>"; };
 		ACA85FFA2018687500802715 /* ZHModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHModel.h; sourceTree = "<group>"; };
 		ACA85FFB2018687500802715 /* ZHModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHModel.m; sourceTree = "<group>"; };
 		ACB844312017372E00FE2957 /* ZHBarrage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHBarrage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +159,8 @@
 				ACB8446D2017441900FE2957 /* ZHLabel.m */,
 				ACB8446F2017446800FE2957 /* ZHAnimation.h */,
 				ACB844702017446800FE2957 /* ZHAnimation.m */,
+				AC24112A20A68DA600F1656D /* ZHbackgroundImage.h */,
+				AC24112B20A68DA600F1656D /* ZHbackgroundImage.m */,
 			);
 			path = ZHBarrage;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				ACB8446E2017441900FE2957 /* ZHLabel.m in Sources */,
 				ACB844692017379700FE2957 /* ZHBarrage.m in Sources */,
 				ACA85FFC2018687500802715 /* ZHModel.m in Sources */,
+				AC24112C20A68DA600F1656D /* ZHbackgroundImage.m in Sources */,
 				ACB844392017372E00FE2957 /* ViewController.m in Sources */,
 				ACB844442017372E00FE2957 /* main.m in Sources */,
 				ACB844712017446800FE2957 /* ZHAnimation.m in Sources */,

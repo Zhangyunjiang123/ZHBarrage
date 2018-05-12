@@ -8,6 +8,7 @@
 
 #import "ZHLabel.h"
 #import "ZHAnimation.h"
+#import "ZHbackgroundImage.h"
 
 @implementation ZHLabel
 
@@ -15,23 +16,61 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.cornerRadius = 10;
-        self.layer.masksToBounds = YES;
-        self.textAlignment = NSTextAlignmentLeft;
-        self.backgroundColor = [UIColor blackColor];
-        self.unblocked = YES;   //默认畅通
-        self.font = [UIFont systemFontOfSize:17];
+        self.unblocked = YES;
+        self.textInsets = UIEdgeInsetsZero;
     }
     return self;
 }
 
-- (void)updateAttributed:(NSMutableAttributedString *)attributedString withSpeed:(int)speed
+- (void)drawTextInRect:(CGRect)rect
+{
+    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, _textInsets)];
+}
+
+- (void)updateAttributed:(NSMutableAttributedString *)attributedString
+               withSpeed:(int)speed
+               withImage:(NSString *)imagePath
+              withInsets:(UIEdgeInsets)insets
 {
     self.unblocked = NO;
-    self.attributedText = attributedString;
     
-    [self sizeToFit];
-    
+    if (imagePath == nil) {
+        NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        paraStyle.alignment = NSTextAlignmentLeft;
+        paraStyle.headIndent = 0.0f;
+        paraStyle.firstLineHeadIndent = 10.0f;
+        paraStyle.tailIndent = 0.0f;
+        paraStyle.lineSpacing = 2.0f;
+        [attributedString addAttributes:@{NSParagraphStyleAttributeName:paraStyle} range:NSMakeRange(0, attributedString.length)];
+        self.attributedText = attributedString;
+        self.textInsets = UIEdgeInsetsZero;
+        [self sizeToFit];
+        self.layer.cornerRadius = 10;
+        self.layer.masksToBounds = YES;
+        self.backgroundColor = [UIColor blackColor];
+    } else {
+        NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        paraStyle.alignment = NSTextAlignmentLeft;
+        paraStyle.headIndent = 0.0f;
+        CGFloat emptylen = self.font.pointSize * 1;
+        paraStyle.firstLineHeadIndent = emptylen * 1.5;
+        paraStyle.tailIndent = 0.0f;
+        paraStyle.lineSpacing = 2.0f;
+        [attributedString addAttributes:@{NSParagraphStyleAttributeName:paraStyle} range:NSMakeRange(0, attributedString.length)];
+        self.attributedText = attributedString;
+        self.textInsets = insets;
+        [self sizeToFit];
+        CGSize imageSize = self.frame.size;
+        UIImage *bgimagePath = [UIImage imageNamed:imagePath];
+        imageSize.height = bgimagePath.size.height;
+        ZHbackgroundImage *ZHbgimage = [ZHbackgroundImage shareTool];
+        UIImage *colorImage = [ZHbgimage updateBackgroundImageLabel:imageSize
+                                                      withImageName:imagePath];
+        self.layer.cornerRadius = 0;
+        self.layer.masksToBounds = NO;
+        self.layer.contents =  (__bridge id) colorImage.CGImage;
+        self.backgroundColor = nil;
+    }
     ZHAnimation *animation = [ZHAnimation shareTool];
     animation.speed = speed;
     [animation startAnimationandLabel:self];
