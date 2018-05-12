@@ -22,19 +22,12 @@
     
     _zh = [[ZHBarrage alloc]initWithFrame:CGRectMake(0, 50, [[UIScreen mainScreen] bounds].size.width, 15*25)];
     [self.view addSubview:_zh];
-//    [self sendBarrage];
+    [self sendBarrage];
     [NSTimer scheduledTimerWithTimeInterval:10
                                      target:self
                                    selector:@selector(sendBarrage)
                                    userInfo:nil
                                     repeats:YES];
-    
-    UIImage *colorImage = [UIImage imageNamed:@"1"];
-    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(300, 500, 50, 50)];
-    lab.backgroundColor = [UIColor redColor];
-    [self.view addSubview:lab];
-    lab.layer.contents =  (__bridge id) colorImage.CGImage;
-    
 }
 
 - (void)sendBarrage

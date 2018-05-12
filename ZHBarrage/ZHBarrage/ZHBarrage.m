@@ -82,6 +82,7 @@
     ZHModel *model = [[ZHModel alloc] init];
     model.attributedString = attributedString;
     model.speed = speed;
+    model.textInsets = insets;
     [_cacheInfoArr addObject:model];
     if (!_cacheTime) {
         _cacheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
