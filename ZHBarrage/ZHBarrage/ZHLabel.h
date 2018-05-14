@@ -27,6 +27,8 @@
 - (void)updateAttributed:(NSMutableAttributedString *)attributedString
                withSpeed:(int)speed
                withImage:(NSString *)imagePath
-              withInsets:(UIEdgeInsets)insets;;
+              withInsets:(UIEdgeInsets)insets;
+
+- (instancetype)initWithFrame:(CGRect)frame withImage:(NSString *)imagePath;
 
 @end

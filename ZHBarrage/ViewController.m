@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _zh = [[ZHBarrage alloc]initWithFrame:CGRectMake(0, 50, [[UIScreen mainScreen] bounds].size.width, 15*25)];
+    _zh = [[ZHBarrage alloc]initWithFrame:CGRectMake(0, 50, [[UIScreen mainScreen] bounds].size.width, 15*25) withdefaultImage:@"1"];
     [self.view addSubview:_zh];
     [self sendBarrage];
     [NSTimer scheduledTimerWithTimeInterval:10

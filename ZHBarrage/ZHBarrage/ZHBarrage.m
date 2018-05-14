@@ -24,11 +24,11 @@
 
 @implementation ZHBarrage
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame withdefaultImage:(NSString *)imagePath
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self creatChannel];
+        [self creatChannel:imagePath];
     }
     return self;
 }
@@ -36,14 +36,35 @@
 /**
  创建通道
  */
-- (void)creatChannel
+- (void)creatChannel:(NSString *)imagePath
 {
     _countChannel = (int)(ZH_HEIGHT / (ZH_Label_HEIGHT + 5));
     _countChannel = _countChannel > 15 ? 15 :_countChannel;
     for (int i = 0; i < _countChannel; i++) {
-        ZHLabel *label = [[ZHLabel alloc] initWithFrame:CGRectMake(ZH_WIDTH, i*(ZH_Label_HEIGHT + 5), 0, ZH_Label_HEIGHT)];
+        ZHLabel *label = [[ZHLabel alloc] initWithFrame:CGRectMake(ZH_WIDTH, i*(ZH_Label_HEIGHT + 5), 0, ZH_Label_HEIGHT) withImage:imagePath];
         label.tag = ZH_Label_tag + i;
         [self addSubview:label];
+    }
+    //处理创建完成后两秒才显示弹幕
+    [NSTimer scheduledTimerWithTimeInterval:2
+                                     target:self
+                                   selector:@selector(onAccording)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+- (void)onAccording
+{
+    _isaccording = YES;
+    if (_cacheInfoArr.count == 0) {
+        return;
+    }
+    if (!_cacheTime) {
+        _cacheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
+                                                      target:self
+                                                    selector:@selector(cacheTimeFunction)
+                                                    userInfo:nil
+                                                     repeats:YES];
     }
 }
 
@@ -52,6 +73,18 @@
           withImage:(NSString *)imagePath
          withInsets:(UIEdgeInsets)insets
 {
+    if (!_isaccording) {
+        if (!_cacheInfoArr) {
+            _cacheInfoArr = [[NSMutableArray alloc] init];
+        }
+        ZHModel *model = [[ZHModel alloc] init];
+        model.attributedString = attributedString;
+        model.imagePath = imagePath;
+        model.speed = speed;
+        model.textInsets = insets;
+        [_cacheInfoArr addObject:model];
+        return;
+    }
     if (_cacheInfoArr && _cacheInfoArr.count > 0) {
         //别急，先处理当前缓存信息
         ZHModel *model = [[ZHModel alloc]init];
@@ -81,6 +114,7 @@
     }
     ZHModel *model = [[ZHModel alloc] init];
     model.attributedString = attributedString;
+    model.imagePath = imagePath;
     model.speed = speed;
     model.textInsets = insets;
     [_cacheInfoArr addObject:model];

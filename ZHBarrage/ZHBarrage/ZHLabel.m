@@ -12,12 +12,21 @@
 
 @implementation ZHLabel
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame withImage:(NSString *)imagePath
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.unblocked = YES;
         self.textInsets = UIEdgeInsetsZero;
+        self.text = [NSString stringWithFormat:@"默认创建时图"];
+        [self sizeToFit];
+        CGSize imageSize = self.frame.size;
+        UIImage *bgimagePath = [UIImage imageNamed:imagePath];
+        imageSize.height = bgimagePath.size.height;
+        ZHbackgroundImage *ZHbgimage = [ZHbackgroundImage shareTool];
+        UIImage *colorImage = [ZHbgimage updateBackgroundImageLabel:imageSize
+                                                      withImageName:imagePath];
+        self.layer.contents = (__bridge id) colorImage.CGImage;
     }
     return self;
 }
@@ -33,7 +42,6 @@
               withInsets:(UIEdgeInsets)insets
 {
     self.unblocked = NO;
-    
     if (imagePath == nil) {
         NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
         paraStyle.alignment = NSTextAlignmentLeft;
