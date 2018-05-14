@@ -35,7 +35,7 @@ static ZHbackgroundImage *background;
                           withImageName:(NSString *)imageName;
 {
     UIImage *bgimage = [UIImage imageNamed:imageName];
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, bgimage.size.width/2 + 5, 0, bgimage.size.width/2 - 6);
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 40, 0, 34);
     bgimage = [bgimage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
     UIImage *newbgimage = [self reSizeImage:bgimage toSize:labelSize];
     return newbgimage;
