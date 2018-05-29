@@ -22,10 +22,10 @@
  赋值
 
  @param attributedString 值
- @param speed 速度
+ @param spseed 速度
  */
 - (void)updateAttributed:(NSMutableAttributedString *)attributedString
-               withSpeed:(int)speed
+              withSpseed:(int)spseed
                withImage:(NSString *)imagePath
               withInsets:(UIEdgeInsets)insets;
 

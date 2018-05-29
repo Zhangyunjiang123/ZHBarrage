@@ -13,7 +13,7 @@
 {
     ZHLabel        *_label;
 }
-@property(nonatomic,assign)int  speed;
+@property(nonatomic,assign)int  spseed;
 
 + (instancetype)shareTool;
 - (void)startAnimationandLabel:(ZHLabel *)label;

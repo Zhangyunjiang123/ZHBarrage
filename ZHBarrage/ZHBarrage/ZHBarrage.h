@@ -11,7 +11,7 @@
 @interface ZHBarrage : UIView
 {
     NSMutableArray   *_cacheInfoArr; //缓存集合
-    NSTimer          *_cacheTime;    //缓存倒计时
+    NSTimer          *caCcheTime;    //缓存倒计时
     BOOL             _isaccording;  //延迟显示弹幕数据 YES 显示
 }
 
@@ -19,12 +19,12 @@
  发送消息
 
  @param attributedString 内容
- @param speed 速度
+ @param spseed 速度
  @param imagePath 背景图片地址
  @param insets 偏移量
  */
 - (void)sendMessage:(NSMutableAttributedString *)attributedString
-          withSpeed:(int)speed
+         withSpseed:(int)spseed
           withImage:(NSString *)imagePath
          withInsets:(UIEdgeInsets)insets;
 

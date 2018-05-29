@@ -11,14 +11,14 @@
 @implementation ZHModel
 
 @synthesize attributedString;
-@synthesize speed;
+@synthesize spseed;
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.attributedString = [[NSMutableAttributedString alloc] initWithString:@""];
-        self.speed = 1;
+        self.spseed = 1;
     }
     return self;
 }

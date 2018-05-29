@@ -14,6 +14,6 @@
 @property(nonatomic,strong)NSMutableAttributedString *attributedString;
 @property(nonatomic,assign)UIEdgeInsets textInsets;
 @property(nonatomic,copy)NSString  *imagePath;
-@property(nonatomic,assign)int     speed;
+@property(nonatomic,assign)int     spseed;
 
 @end

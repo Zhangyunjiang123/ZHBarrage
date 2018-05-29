@@ -34,7 +34,7 @@ static ZHAnimation *animation;
 - (void)startAnimationandLabel:(ZHLabel *)label
 {
     CGFloat customLabwith = label.frame.size.width;
-    int time = (ZH_ANIMATION_WIDTH + customLabwith*2 + 10)/self.speed;
+    int time = (ZH_ANIMATION_WIDTH + customLabwith*2 + 10)/self.spseed;
     CGFloat left_P = - (customLabwith/2 - 10);
     CGPoint center = CGPointMake(ZH_ANIMATION_WIDTH + customLabwith/2 + 5, label.center.y);
     CGPoint finishPoint = CGPointMake(left_P, label.center.y);

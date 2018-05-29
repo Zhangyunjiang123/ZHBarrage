@@ -59,8 +59,8 @@
     if (_cacheInfoArr.count == 0) {
         return;
     }
-    if (!_cacheTime) {
-        _cacheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
+    if (!caCcheTime) {
+        caCcheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
                                                       target:self
                                                     selector:@selector(cacheTimeFunction)
                                                     userInfo:nil
@@ -69,7 +69,7 @@
 }
 
 - (void)sendMessage:(NSMutableAttributedString *)attributedString
-          withSpeed:(int)speed
+         withSpseed:(int)spseed
           withImage:(NSString *)imagePath
          withInsets:(UIEdgeInsets)insets
 {
@@ -80,7 +80,7 @@
         ZHModel *model = [[ZHModel alloc] init];
         model.attributedString = attributedString;
         model.imagePath = imagePath;
-        model.speed = speed;
+        model.spseed = spseed;
         model.textInsets = insets;
         [_cacheInfoArr addObject:model];
         return;
@@ -89,7 +89,7 @@
         //别急，先处理当前缓存信息
         ZHModel *model = [[ZHModel alloc]init];
         model.attributedString = attributedString;
-        model.speed = speed;
+        model.spseed = spseed;
         model.imagePath = imagePath;
         model.textInsets = insets;
         [_cacheInfoArr addObject:model];
@@ -101,7 +101,7 @@
         NSLog(@"curr channel %d unblocked = %d",i,label.unblocked);
         if (label.unblocked == YES) {
             [label updateAttributed:attributedString
-                          withSpeed:speed
+                         withSpseed:spseed
                           withImage:imagePath
                          withInsets:insets];
             return;
@@ -115,11 +115,11 @@
     ZHModel *model = [[ZHModel alloc] init];
     model.attributedString = attributedString;
     model.imagePath = imagePath;
-    model.speed = speed;
+    model.spseed = spseed;
     model.textInsets = insets;
     [_cacheInfoArr addObject:model];
-    if (!_cacheTime) {
-        _cacheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
+    if (!caCcheTime) {
+        caCcheTime = [NSTimer scheduledTimerWithTimeInterval:0.2
                                                       target:self
                                                     selector:@selector(cacheTimeFunction)
                                                     userInfo:nil
@@ -134,7 +134,7 @@
         ZHLabel *label = [self viewWithTag:ZH_Label_tag + i];
         if (label.unblocked == YES) {
             [label updateAttributed:model.attributedString
-                          withSpeed:model.speed
+                         withSpseed:model.spseed
                           withImage:model.imagePath
                          withInsets:model.textInsets];
             [_cacheInfoArr removeObjectAtIndex:0];
@@ -156,9 +156,9 @@
 
 - (void)stopCacheTime
 {
-    if (_cacheTime) {
-        [_cacheTime invalidate];
-        _cacheTime = nil;
+    if (caCcheTime) {
+        [caCcheTime invalidate];
+        caCcheTime = nil;
     }
 }
 

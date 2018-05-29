@@ -37,7 +37,7 @@
 }
 
 - (void)updateAttributed:(NSMutableAttributedString *)attributedString
-               withSpeed:(int)speed
+              withSpseed:(int)spseed
                withImage:(NSString *)imagePath
               withInsets:(UIEdgeInsets)insets
 {
@@ -80,7 +80,7 @@
         self.backgroundColor = nil;
     }
     ZHAnimation *animation = [ZHAnimation shareTool];
-    animation.speed = speed;
+    animation.spseed = spseed;
     [animation startAnimationandLabel:self];
 }
 @end
