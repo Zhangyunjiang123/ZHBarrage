@@ -1,3 +1,3 @@
 # ZHBarrage
 iOS 弹幕
-![avatar](/Users/zhangyunjiang/ZHBarrage/ezgif.com-video-to-gif.gif)
+![avatar](https://github.com/Zhangyunjiang123/ZHBarrage/blob/master/ezgif.com-video-to-gif.gif)
