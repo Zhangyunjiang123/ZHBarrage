@@ -31,4 +31,10 @@
 
 - (instancetype)initWithFrame:(CGRect)frame withImage:(NSString *)imagePath;
 
+
+/**
+ 重新初始化
+ */
+- (void)reinitialize;
+
 @end

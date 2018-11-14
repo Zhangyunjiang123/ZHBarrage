@@ -10,9 +10,10 @@
 
 @interface ZHBarrage : UIView
 {
-    NSMutableArray   *_cacheInfoArr; //缓存集合
     NSTimer          *caCcheTime;    //缓存倒计时
-    BOOL             _isaccording;  //延迟显示弹幕数据 YES 显示
+    
+    NSMutableArray   *_cacheInfoArr; //缓存集合
+    BOOL             _isaccording;   //延迟显示弹幕数据 YES 显示
 }
 
 /**

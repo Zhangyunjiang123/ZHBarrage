@@ -17,7 +17,6 @@
 
 @interface ZHBarrage()
 {
-    UILabel   *label;
     int       _countChannel;
 }
 @end
@@ -98,7 +97,6 @@
     //是否查找到通道
     for (int i = 0; i < _countChannel; i++) {
         ZHLabel *label = [self viewWithTag:ZH_Label_tag + i];
-        NSLog(@"curr channel %d unblocked = %d",i,label.unblocked);
         if (label.unblocked == YES) {
             [label updateAttributed:attributedString
                          withSpseed:spseed

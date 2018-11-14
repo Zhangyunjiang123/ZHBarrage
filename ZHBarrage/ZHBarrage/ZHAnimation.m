@@ -56,7 +56,7 @@ static ZHAnimation *animation;
 {
     if (anim == [_label.layer animationForKey:@"label"]) {
         [_label.layer removeAnimationForKey:@"label"];
-        _label.unblocked = YES;
+        [_label reinitialize];
     }
 }
 @end
