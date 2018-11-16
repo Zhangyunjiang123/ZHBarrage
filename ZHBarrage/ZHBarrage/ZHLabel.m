@@ -82,10 +82,7 @@
     ZHbackgroundImage *ZHbgimage = [ZHbackgroundImage shareTool];
     UIImage *colorImage = [ZHbgimage updateBackgroundImageLabel:imageSize
                                                   withImageName:imagePath];
-    self.layer.cornerRadius = 0;
-    self.layer.masksToBounds = NO;
     self.layer.contents =  (__bridge id) colorImage.CGImage;
-    self.backgroundColor = nil;
     
     ZHAnimation *animation = [ZHAnimation shareTool];
     animation.spseed = spseed;

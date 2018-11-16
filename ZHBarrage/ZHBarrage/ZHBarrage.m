@@ -106,7 +106,6 @@
         }
     }
     //处理未找到通道时动作
-    NSLog(@"creat succeed");
     if (!_cacheInfoArr) {
         _cacheInfoArr = [[NSMutableArray alloc] init];
     }
@@ -140,7 +139,6 @@
                 //清空集合，停止时间循环
                 _cacheInfoArr = nil;
                 [self stopCacheTime];
-                NSLog(@"clean succeed");
             }
             return;
         }
