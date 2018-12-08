@@ -33,7 +33,7 @@
 
 - (void)sendBarrage
 {
-    NSString *msg = [NSString stringWithFormat:@"玩家名字:%ld    ",(arc4random() % 1000000000000)];
+    NSString *msg = [NSString stringWithFormat:@"玩家名字:%ld  ",(arc4random() % 1000000000000)];
     NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:msg];
     [attributed setAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont systemFontOfSize:17]} range:NSMakeRange(0, 5)];
     [attributed setAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:17]} range:NSMakeRange(5, msg.length - 5)];
